@@ -7,8 +7,8 @@ USAGE:
 
 awk -f gff2gtf.awk FILE.gff > FILE.gtf
 
-Works with those operating systems which have AWK interpreter. 
-The script relies on order of records. Ordering is not required for GFF according to the specification, but usually records are ordered.
+Works with those operating systems that have AWK interpreter. 
+The script relies on the order of records. Ordering is not required for GFF by the specification, but usually records are ordered.
 
 For RSEM:
 
