@@ -25,6 +25,8 @@ BEGIN{
 	sub(".*ID=", "", str);
 	sub(";.*", "", str);
 	annot[subname"_id"] = str;
+	annot["gene_id"] = str;
+	annot["transcript_id"] = str;
 	str = $9;
 	sub(".*Name=", "", str);
 	sub(";.*", "", str);
@@ -50,8 +52,6 @@ BEGIN{
 	else if ($3 == "CDS")
 	{
 		$9 = "gene_id \""annot["gene_id"]"\"; transcript_id \""annot["transcript_id"]"\"; ";
-		if (en != 0)
-			$9 = $9"exon_number \""en"\"; "
 		$9 = $9"gene_name \""annot["gene_name"]"\"; transcript_name \""annot["transcript_name"]"\"; ";
 	}
 	else if ($3 == "exon")
@@ -60,16 +60,16 @@ BEGIN{
 	}
 	else if ($3 == "three_prime_UTR")
 	{
-		sub("Parent", "transcript_id_id", $9);
+		sub("Parent", "transcript_id", $9);
 	}
 	else if ($3 == "five_prime_UTR")
 	{
-		sub("Parent", "transcript_id_id", $9);
+		sub("Parent", "transcript_id", $9);
 	}
 	else if ($3 == "protein")
 	{
 		sub("-Protein", "", $9);
-		$9 = $9" gene_id \""annot["gene_id"]"\"; transcript_id \""annot["transcript_id"]"\"; gene_name \""annot["gene_name"]"\"; transcript_name \""annot["transcript_name"]"\"; ";
+		$9 = $9" gene_id \""annot["gene_id"]"\"; transcript_id \""annot["transcript_id"]"\"; gene_name \""annot["gene_name"]"\"; transcript_name \""annot["transcript_name"]"\";";
 	}
 	print;	
 }
